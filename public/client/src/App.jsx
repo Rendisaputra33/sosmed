@@ -1,16 +1,21 @@
-import Header from './components/Header/Header'
 import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './assets/style.css'
+import Header from './components/Header/Header'
+import Home from './pages/Home/Home'
 
 function App() {
 	React.useEffect(() => {
-		document.title = 'Sosmed - WEB'
+		document.title = 'Breaking - WEB'
 	}, [])
 
 	return (
-		<div className="App">
+		<BrowserRouter>
 			<Header />
-		</div>
+			<Routes>
+				<Route path="/" element={<Home />} />
+			</Routes>
+		</BrowserRouter>
 	)
 }
 

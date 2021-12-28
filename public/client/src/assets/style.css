@@ -1,13 +1,23 @@
+/* .app {
+	max-height: 100vh;
+} */
+
 nav {
 	display: flex;
-	flex: 1;
 	height: calc(100vh - 92vh);
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: row;
-	padding: 0 20px;
 	background-color: white;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.07);
+	position: sticky;
+	top: 0;
+	z-index: 2;
+}
+
+.navbar-active {
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.06);
+	transition: all 0.3s ease-in-out;
 }
 
 li {
@@ -25,6 +35,7 @@ li .active {
 li:hover {
 	background-color: antiquewhite;
 	transition: all ease-out 0.5s;
+	cursor: pointer;
 }
 
 button {
@@ -35,9 +46,10 @@ button {
 	height: calc(100vh - 97vh);
 }
 
-button:hover {
+button[class='primary']:hover {
 	background-color: rgba(31, 128, 238, 0.333);
 	transition: all ease-out 0.5s;
+	cursor: pointer;
 }
 
 button .text {
@@ -46,4 +58,34 @@ button .text {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
 	text-align: center;
+}
+
+.container {
+	margin: 0;
+	flex: 1;
+	display: flex;
+	width: 100%;
+	height: 150vh;
+	padding-top: 30px;
+	word-wrap: break-word;
+	background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+	nav {
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		position: fixed;
+		height: calc(100vh - 90vh);
+		top: 91vh;
+		z-index: 3;
+		background-color: white;
+		box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
+	}
+
+	li {
+		display: flex;
+	}
 }
