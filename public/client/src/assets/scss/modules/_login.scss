@@ -1,0 +1,32 @@
+@mixin login_stylesheet($primary) {
+	.box-wraper-login {
+		background-color: rgb(248, 248, 246);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
+		//
+		.login-box {
+			background: white;
+			border-radius: 10px;
+			padding: 20px;
+			height: 45%;
+			width: 20%;
+			z-index: 1;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+			//
+			h1 {
+				font-size: 30px;
+				font-weight: 600;
+				color: $primary;
+			}
+
+			.input-wraper {
+				display: flex;
+				width: 100%;
+				height: 8%;
+			}
+		}
+	}
+}

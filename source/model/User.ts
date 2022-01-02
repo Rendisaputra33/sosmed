@@ -33,7 +33,7 @@ const User = postgre.define<Model<UserDocument>>(
 			allowNull: false,
 		},
 		token: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 			allowNull: true,
 		},
 	},

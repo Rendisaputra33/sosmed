@@ -2,7 +2,6 @@ import http from 'http'
 import app from './app'
 import socket from './socket'
 import { configs, postgre } from './source/bootstrap'
-import User from './source/model/User'
 
 const server = http.createServer(app)
 const port = configs.port || 8000

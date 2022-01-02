@@ -61,14 +61,13 @@ li:hover {
 button {
 	border: none;
 	background-color: #1981f8;
-	border-radius: 20px;
 	width: calc(100vh - 90vh);
 	height: calc(100vh - 97vh);
+	transition: all ease-in-out 0.5s;
 }
 
-button[class='primary']:hover {
-	background-color: rgba(31, 128, 238, 0.333);
-	transition: all ease-out 0.5s;
+button:hover {
+	background-color: rgba(252, 238, 195, 0.479);
 	cursor: pointer;
 }
 

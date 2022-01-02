@@ -16,7 +16,7 @@ export default (env?: string): UserController => ({
 		try {
 			const userloginRequest = new LoginRequest(req.body.username, req.body.password)
 			const token = await service().verifyLogin(userloginRequest)
-			return res.status(200).json({ error: false, token })
+			return res.cookie('x-auth', token).status(200).json({ error: false, token })
 		} catch (e: unknown) {
 			return res.status(200).json({ error: true, message: (e as any).message })
 		}
@@ -37,6 +37,7 @@ export default (env?: string): UserController => ({
 		try {
 			return res.status(200).json({
 				port: configs.port,
+				cookies: req.cookies,
 			})
 		} catch (e: unknown) {
 			return res.status(200).json({})

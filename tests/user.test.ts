@@ -6,7 +6,7 @@ const testFunc = () => {
 
 describe('fetch user', () => {
 	it('descript', done => {
-		asert.strictEqual(testFunc(), 10)
+		asert.strictEqual(testFunc(), 2)
 		done()
 	})
 })

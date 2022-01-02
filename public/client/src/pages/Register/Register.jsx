@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import Spiner from '../../components/Loaders/Spiner'
 
 //
-export default function Login(props) {
+export default function Register(props) {
 	//
-	const [form, setForm] = React.useState({ username: '', password: '' })
+	const [form, setForm] = React.useState({ username: '', password: '', email: '' })
 	const [loading, setLoading] = React.useState(false)
 
 	const dispatch = useDispatch()
@@ -17,9 +17,23 @@ export default function Login(props) {
 
 	const handleChange = event => {
 		if (event.target.name === 'username') {
-			return setForm(prev => ({ username: event.target.value, password: prev.password }))
+			return setForm(prev => ({
+				username: event.target.value,
+				password: prev.password,
+				email: prev.email,
+			}))
+		} else if (event.target.name === 'email') {
+			return setForm(prev => ({
+				username: prev.username,
+				password: prev.password,
+				email: prev.email,
+			}))
 		}
-		return setForm(prev => ({ username: prev.username, password: event.target.value }))
+		return setForm(prev => ({
+			username: prev.username,
+			password: event.target.value,
+			email: prev.email,
+		}))
 	}
 
 	const handleSubmit = e => {
@@ -27,7 +41,7 @@ export default function Login(props) {
 		setLoading(true)
 		dispatch(userActions.postLogin(form)).then(res => {
 			setLoading(false)
-			navigation('/', { replace: true })
+			navigation('/login', { replace: true })
 		})
 	}
 
@@ -37,25 +51,14 @@ export default function Login(props) {
 			<div className="box-wraper-login">
 				<div className="login-box">
 					<h1>Sign In</h1>
-					<div className="input-wraper" style={{ marginTop: 50 }}>
+					<div className="grid-container grid-row-1">
 						<TextInput
-							value={form.username}
-							name="username"
-							type="text"
 							hint="Username"
+							name="username"
+							value={form.username}
 							changeValue={handleChange}
 						/>
 					</div>
-					<div className="input-wraper" style={{ marginTop: 50, marginBottom: 70 }}>
-						<TextInput
-							value={form.password}
-							name="password"
-							type="password"
-							hint="Password"
-							changeValue={handleChange}
-						/>
-					</div>
-
 					<ElevationButton color="rgb(250, 220, 89)" width="100%" height="42px" type="submit">
 						<span style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Login</span>
 					</ElevationButton>

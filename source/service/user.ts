@@ -15,9 +15,21 @@ export default (): UserService => ({
 	//
 	verifyLogin: async (loginRequest: LoginRequest): Promise<LoginResponse> => {
 		try {
-			const user = await repository().findOneAndCreateToken(loginRequest)
-			return new LoginResponse(generate(user, '1h'))
+			const user = await repository().findOneAndVerify(loginRequest)
+			const token = generate(
+				{
+					username: user.username,
+					id: user.user_id,
+					create: user.createdAt,
+					update: user.updatedAt,
+					email: user.email,
+				},
+				'1h'
+			)
+			await repository().updateToken(token, user.user_id)
+			return new LoginResponse(token)
 		} catch (error) {
+			console.log(error)
 			if ((error as Error).name == 'ValidateException')
 				throw new ValidateException(
 					(error as ValidateException).message,

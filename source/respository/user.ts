@@ -7,12 +7,17 @@ import { Op } from 'sequelize'
 
 export default () => ({
 	//
-	findOneAndCreateToken: async (data: LoginRequest) => {
+	findOneAndVerify: async (data: LoginRequest) => {
 		const user = (await User.findOne({ where: { username: data.username } }))?.get()
 		if (!user) throw new ValidateException('username or password wrong!')
 		const ver = await verifyPassword(data.password, user.password)
 		if (!ver) throw new ValidateException('username or password wrong!')
 		return user
+	},
+	//
+	updateToken: async (token: string, id: number | undefined) => {
+		await User.update({ token: token }, { where: { user_id: id } })
+		return true
 	},
 	//
 	findOneAndCreate: async (data: ResgisterRequest) => {

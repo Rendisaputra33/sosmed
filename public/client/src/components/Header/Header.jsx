@@ -3,6 +3,25 @@ import { Link, useLocation } from 'react-router-dom'
 import Logo from '../../assets/images/logo.svg'
 import './header.css'
 
+const menus = [
+	{
+		name: 'Home',
+		link: '/',
+	},
+	{
+		name: 'Blogs',
+		link: '/blogs',
+	},
+	{
+		name: 'Profile',
+		link: '/profile',
+	},
+	{
+		name: 'Contact',
+		link: '/contact',
+	},
+]
+
 export default function Header() {
 	// location
 	const location = useLocation()
@@ -41,23 +60,17 @@ export default function Header() {
 						<img src={Logo} alt="logo" />
 					</div>
 					{/* item */}
-					<Link style={{ textDecoration: 'none', color: 'inherit' }} to="/">
-						<li>Home</li>
-					</Link>
-					<Link style={{ textDecoration: 'none', color: 'inherit' }} to="/about">
-						<li>About</li>
-					</Link>
-					<Link style={{ textDecoration: 'none', color: 'inherit' }} to="/projects">
-						<li>Project</li>
-					</Link>
-					<Link style={{ textDecoration: 'none', color: 'inherit' }} to="/contact">
-						<li>Contact</li>
-					</Link>
+					{menus.map((menu, index) => (
+						<Link key={index} style={{ textDecoration: 'none', color: 'inherit' }} to={menu.link}>
+							<li>{menu.name}</li>
+						</Link>
+					))}
 					{/* end item */}
 				</div>
 			</ul>
-			<ul style={{ marginRight: 20 }}>
-				<li style={{ backgroundColor: 'antiquewhite' }}>Login</li>
+			<ul style={{ marginRight: 20, flexDirection: 'row', display: 'flex' }}>
+				<li>Sign in</li>
+				<li style={{ backgroundColor: 'antiquewhite' }}>Sign up</li>
 			</ul>
 			<ul className="toogle">
 				<div className="toogle">

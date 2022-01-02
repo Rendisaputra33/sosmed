@@ -17,12 +17,12 @@ const app = express()
 // assign middleware for handling cors origin
 app.use(origin({ origin: '*' }))
 
+// assign middleware cookie
+app.use(cookie())
+
 // assign middleware request json
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
-
-// assign middleware cookie
-app.use(cookie('secret_key'))
 
 //
 app.use(express.static(process.cwd() + '/public/client/public'))
